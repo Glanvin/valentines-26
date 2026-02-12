@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ffc3d5 50%, #ff8fab 100%);
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+.heart {
+    position: fixed;
+    bottom: -40px;
+    pointer-events: none;
+    animation-name: floatUp;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: 
+            translate(0, 0)
+            rotate(var(--rotation))
+            scale(0.8);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    25% {
+        transform: 
+            translate(calc(var(--drift) * 0.3), -25vh)
+            rotate(calc(var(--rotation) + 10deg))
+            scale(1);
+    }
+
+    50% {
+        transform: 
+            translate(calc(var(--drift) * 0.6), -50vh)
+            rotate(calc(var(--rotation) - 8deg))
+            scale(1.1); /* pulse up */
+        opacity: 0.95;
+    }
+
+    75% {
+        transform: 
+            translate(calc(var(--drift) * 0.8), -75vh)
+            rotate(calc(var(--rotation) + 5deg))
+            scale(1);
+    }
+
+    100% {
+        transform: 
+            translate(var(--drift), -100vh)
+            rotate(calc(var(--rotation) + 15deg))
+            scale(0.9);
+        opacity: 0;
+    }
+}
+
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+    max-width: 90%;
+}
+
+#gift-content {
+    max-width: 400px;
+    max-height: 350px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    display: block;
+    object-fit: contain;
+}
+
+.valentine-text {
+    font-size: 28px;
+    color: #ff6b9d;
+    text-align: center;
+    font-weight: 700;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    min-height: 60px;
+    width: 100%;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#primary {
+    background: linear-gradient(135deg, #ff6b9d, #ff8fab);
+    color: white;
+}
+
+#primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+#secondary {
+    background: white;
+    color: #ff6b9d;
+    border: 2px solid #ff6b9d;
+}
+
+#secondary:hover {
+    background: #ff6b9d;
+    color: white;
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+}
+
+button:active {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+    .content-wrapper {
+        padding: 25px;
+    }
+
+    button {
+        padding: 12px 30px;
+        font-size: 14px;
+        min-width: 120px;
+    }
+
+    #gift-content {
+        max-width: 300px;
+    }
+}
